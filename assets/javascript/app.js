@@ -94,12 +94,31 @@
                 cardImage.attr("data-state", "still");
                 // Set the alt attribute to the title of the gif
                 cardImage.attr("alt", gifObjectArray[i].title);
+                // Set on click handler to the image
+                cardImage.on("click", function() {
+                    changeState($(this));
+                })
                 // Append the image to the card
                 card.append(cardImage);
 
                 // Append the card div to the the gifs area
                 $("#gifs-area").append(div);
             }
+        }
+
+        // Change the state of the image
+        function changeState(thisImage) {
+            // If the state of the image is still
+            if (thisImage.attr("data-state") === "still") {
+                // Change the state to animate
+                thisImage.attr("data-state", "animate");
+            } else {  // If the state of the image is animate
+                // Change the state to still
+                thisImage.attr("data-state", "still");
+            }
+
+            // Change the src attribute of the image to the url of the new state
+            thisImage.attr("src", thisImage.attr("data-" + thisImage.attr("data-state")));
         }
 
         // Creates the existing buttons
