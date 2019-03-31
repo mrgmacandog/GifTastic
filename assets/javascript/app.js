@@ -31,7 +31,7 @@
             let sportButton = $("<button>")
 
             // Add boostrap class to the button
-            sportButton.addClass("btn btn-info")
+            sportButton.addClass("btn btn-info sport-button")
 
             // Set the sport name as the id
             sportButton.attr("id", sportName);
@@ -115,6 +115,7 @@
         <div class="card">
             <img class="card-img-top" src="..." alt="Card image cap">
             <div class="card-body">
+                <h5 class="card-title">Card title</h5>
             </div>
         </div>
         */
@@ -124,10 +125,14 @@
             // Loop through all the objcets in the the array
             for (let i = 0; i < gifObjectArray.length; i++) {
                 // Create a div for each card
-                let div = $("<div>").addClass("col-md-4");
+                let div = $("<div>").addClass("col-md-4 d-flex align-items-stretch");
+                // Append the card div to the the gifs area
+                $("#gifs-area").append(div);
 
                 // Create the card
                 let card = $("<div>").addClass("card");
+                // Set the width of the card to be the whole width of the div
+                card.css("width", "100%");
                 // Append it to the div
                 div.append(card);
 
@@ -150,8 +155,13 @@
                 // Append the image to the card
                 card.append(cardImage);
 
-                // Append the card div to the the gifs area
-                $("#gifs-area").append(div);
+                let cardBody = $("<div>").addClass("card-body");
+                card.append(cardBody);
+
+                let cardTitle = $("<h5>").addClass("card-title");
+                cardTitle.text(gifObjectArray[i].rating);
+                cardBody.append(cardTitle);
+                
             }
         }
 
@@ -181,20 +191,23 @@
             let sportName = $("#sport-input").val();
             console.log(sports.indexOf(sportName));
 
-            // If the sport entered is not already a button
-            if (sports.indexOf(sportName) === -1) {
-                // Add the sport to the sports array
-                sports.push(sportName);
+            if (sportName !== "") {
 
-                // Create a button for the sport the user inputted
-                createButton(sportName);
+                // If the sport entered is not already a button
+                if (sports.indexOf(sportName) === -1) {
+                    // Add the sport to the sports array
+                    sports.push(sportName);
 
-                // Clear the user input
-                $("#sport-input").val("");
-            } else {  // The sport is already a button
-                // Flash the previously created sport button
-                $("#" + sportName).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
+                    // Create a button for the sport the user inputted
+                    createButton(sportName);
 
+                    // Clear the user input
+                    $("#sport-input").val("");
+                } else {  // The sport is already a button
+                    // Flash the previously created sport button
+                    $("#" + sportName).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
+
+                }
             }
         })
     });
