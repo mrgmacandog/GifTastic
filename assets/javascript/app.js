@@ -6,6 +6,13 @@
     $(document).ready(function() {
         // My API key for the GIPHY API
         const API_KEY = "28lAjGKNf0GPp5tY9oP31j3cTYi2EbzU";
+        // The limit of how many gifs are accessed from the API
+        const LIMIT = 12;
+        // The maximum rating of a gif
+        const RATING = "pg-13"
+
+        // Offset for GIPHY API
+        let offset = 0;
 
         // Array of sports
         let sports = ["baseball", "basketball", "football"];
@@ -50,16 +57,58 @@
             $("#gifs-area").empty();
 
             // URL used to reach and endpoint in the GIPHY API
-            let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + sportName + "&limit=10&api_key=" + API_KEY;
+            let queryURL = "https://api.giphy.com/v1/gifs/search" +
+                                "?q=" + sportName +
+                                "&limit=" + LIMIT +
+                                "&rating=" + RATING +
+                                "&api_key=" + API_KEY;
 
             // jQuery method for calling the API
             $.ajax({
                 url: queryURL,
                 method: "GET"
             }).then(function(response) {
+                console.log(response.data);
+                
                 // Display the gifs on the page
                 displayGifs(response.data);
-            })
+
+                // Set the load more button as a variable
+                let loadMore = $("#load-more");
+
+                // Remove on click for the load more button
+                loadMore.off("click");
+
+                // When the load more button is clicked
+                loadMore.on("click", function() {
+                    // Query the API more for gifs
+                    queryMoreAPI(queryURL);
+                });
+
+                // Show the load more button
+                loadMore.show();
+            });
+        }
+
+        // Loads more gifs from the GIPHY API
+        function queryMoreAPI(queryURL) {
+            // Increase the offset by the limit so that the the call to the API doesn't get back
+            //     the gifs already displayed on the webpage.
+            offset+=LIMIT;
+
+            // Add the offset parameter to the query
+            queryURL += "&offset=" + offset;
+
+            // jQuery method for calling the API
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function(response) {
+                console.log(response.data);
+
+                // Display the gifs on the page
+                displayGifs(response.data);
+            });
         }
 
         /*
