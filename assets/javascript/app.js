@@ -56,6 +56,9 @@
             // Empty the gifs area
             $("#gifs-area").empty();
 
+            // Hide the load more button
+            $("#load-more").hide();
+
             // URL used to reach and endpoint in the GIPHY API
             let queryURL = "https://api.giphy.com/v1/gifs/search" +
                                 "?q=" + sportName +
@@ -164,7 +167,7 @@
                 // Create an h5 element for the gif title
                 let gifTitle = $("<h5>").addClass("card-title capitalize");
                 // Add the title to the header
-                gifTitle.text(gifObjectArray[i].title);
+                gifTitle.text(gifObjectArray[i].title.toUpperCase());
                 // Append it to the the card body
                 cardBody.append(gifTitle);
 

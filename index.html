@@ -17,32 +17,37 @@
     <title>GifTastic</title>
 </head>
 
-<body>
-    <div class="container">
+<body class="bg-light">
+    <nav class="navbar fixed-top navbar-dark bg-secondary">
+        <span class="navbar-brand mb-0 h1">GifTastic</span>
+    </nav>
+
+    <div class="container-fluid">
         <div class="row">
-            <div id="button-area" class="col-md-12">
-
-            </div>
-        </div>
-
-        <div class="row">
-
-            <div id="search-area" class="col-md-3 order-md-2">
+            <div id="search-area" class="col-md-3 order-md-2 fixed-posi">
                 <form>
                     <div class="form-group">
                         <label for="sport-input">Enter a sport</label>
-                        <input type="text" class="form-control" id="sport-input" placeholder="name">
+                        <input type="text" class="form-control" id="sport-input" placeholder="Sport">
                     </div>
+                    
                     <button type="submit" class="btn btn-primary" id="add-sport">Add Sport</button>
                 </form>
+
+                <hr>
+
+                <div id="button-area">
+
+                </div>
             </div>
+            
             <div class="col-md-9 order-md-1">
                 <div id="gifs-area" class="row">
 
                 </div>
 
                 <div class="row d-flex justify-content-center">
-                    <button type="button" id="load-more" class="btn btn-info hidden">Load More</button>
+                    <button type="button" id="load-more" class="btn btn-secondary hidden">Load More</button>
                 </div>
             </div>
         </div>

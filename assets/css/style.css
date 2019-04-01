@@ -1,10 +1,13 @@
+.container-fluid {
+    margin-top: 70px;
+}
+
 #button-area {
-    margin-top: 5px;
-    margin-bottom: 30px;
+    margin-top: 10px;
 }
 
 .sport-button {
-    margin-top: 10px;
+    margin-bottom: 10px;
     margin-right: 10px;
 }
 
@@ -13,11 +16,25 @@
 }
 
 .row > .col-md-9 {
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 #search-area {
-    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .fixed-posi {
+        height:100%;
+        width: 100%;
+        margin-left: 75%;
+        position: fixed;
+        overflow-y: scroll;
+    }
+
+    #search-area {
+        padding-bottom: 70px;
+    }
 }
 
 .capitalize {
