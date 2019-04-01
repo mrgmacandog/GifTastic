@@ -8,8 +8,20 @@
     margin-right: 10px;
 }
 
-.col-md-4{
+.col-md-4 {
     padding-bottom: 30px;
+}
+
+.row > .col-md-9 {
+    margin-bottom: 15px;
+}
+
+#search-area {
+    margin-bottom: 30px;
+}
+
+.capitalize {
+    text-transform: capitalize;
 }
 
 .hidden {

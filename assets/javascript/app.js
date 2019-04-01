@@ -116,6 +116,7 @@
             <img class="card-img-top" src="..." alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
+                <p class="card-text">Card text</p>
             </div>
         </div>
         */
@@ -155,13 +156,24 @@
                 // Append the image to the card
                 card.append(cardImage);
 
+                // Create div element for the card body
                 let cardBody = $("<div>").addClass("card-body");
+                // Append it to the card
                 card.append(cardBody);
 
-                let cardTitle = $("<h5>").addClass("card-title");
-                cardTitle.text(gifObjectArray[i].rating);
-                cardBody.append(cardTitle);
-                
+                // Create an h5 element for the gif title
+                let gifTitle = $("<h5>").addClass("card-title capitalize");
+                // Add the title to the header
+                gifTitle.text(gifObjectArray[i].title);
+                // Append it to the the card body
+                cardBody.append(gifTitle);
+
+                // Create p element for the gif rating
+                let gifRating = $("<p>").addClass("card-text");
+                // Add the rating to the p element
+                gifRating.text("Rating: " + gifObjectArray[i].rating.toUpperCase());
+                // Append it to the card body
+                cardBody.append(gifRating);
             }
         }
 
@@ -188,11 +200,12 @@
             // Prevent the page from refreshing
             event.preventDefault();
 
+            // Save the user input into a variable
             let sportName = $("#sport-input").val();
             console.log(sports.indexOf(sportName));
 
+            // If the user input is not blank
             if (sportName !== "") {
-
                 // If the sport entered is not already a button
                 if (sports.indexOf(sportName) === -1) {
                     // Add the sport to the sports array
@@ -206,7 +219,6 @@
                 } else {  // The sport is already a button
                     // Flash the previously created sport button
                     $("#" + sportName).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
-
                 }
             }
         })
