@@ -1,3 +1,7 @@
+.nav-link:hover {
+    cursor: pointer;
+}
+
 .container-fluid {
     margin-top: 70px;
 }
@@ -11,7 +15,7 @@
     margin-right: 10px;
 }
 
-.col-md-4 {
+.col-md-3, .col-md-4 {
     padding-bottom: 30px;
 }
 
@@ -33,7 +37,7 @@
     }
 
     #search-area {
-        padding-bottom: 70px;
+        padding-bottom: 90px;
     }
 }
 

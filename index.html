@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="assets/javascript/app.js"></script>
 
     <link rel="icon" href="">
@@ -18,12 +19,25 @@
 </head>
 
 <body class="bg-light">
-    <nav class="navbar fixed-top navbar-dark bg-secondary">
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-secondary">
         <span class="navbar-brand mb-0 h1">GifTastic</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li id="nav-search" class="nav-item active">
+                    <a class="nav-link">Search</a>
+                </li>
+                <li id="nav-favorites" class="nav-item">
+                    <a class="nav-link">Favorites</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
     <div class="container-fluid">
-        <div class="row">
+        <div id="search-section" class="row">
             <div id="search-area" class="col-md-3 order-md-2 fixed-posi">
                 <form>
                     <div class="form-group">
@@ -50,6 +64,10 @@
                     <button type="button" id="load-more" class="btn btn-secondary hidden">Load More</button>
                 </div>
             </div>
+        </div>
+
+        <div id="favorites-section" class="row hidden">
+
         </div>
     </div>
 </body>

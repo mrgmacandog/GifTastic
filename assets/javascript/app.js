@@ -17,6 +17,9 @@
         // Array of sports
         let sports = ["baseball", "basketball", "football"];
 
+        // Array of favorite IDs
+        let favoriteIDs = [];
+
         // Create and display the pre-exisiting sports as buttons
         function createExistingButtons() {
             // Loop through all the sports
@@ -57,7 +60,7 @@
             $("#gifs-area").empty();
 
             // Hide the load more button
-            $("#load-more").hide();
+            $("#load-more").addClass("hidden");
 
             // URL used to reach and endpoint in the GIPHY API
             let queryURL = "https://api.giphy.com/v1/gifs/search" +
@@ -89,7 +92,7 @@
                 });
 
                 // Show the load more button
-                loadMore.show();
+                loadMore.removeClass("hidden");
             });
         }
 
@@ -128,6 +131,12 @@
         function displayGifs(gifObjectArray) {
             // Loop through all the objcets in the the array
             for (let i = 0; i < gifObjectArray.length; i++) {
+                // TODO: Save the gif id somewhere
+
+
+
+
+
                 // Create a div for each card
                 let div = $("<div>").addClass("col-md-4 d-flex align-items-stretch");
                 // Append the card div to the the gifs area
@@ -154,8 +163,9 @@
                 cardImage.attr("alt", gifObjectArray[i].title);
                 // Set on click handler to the image
                 cardImage.on("click", function() {
+                    // Change state of the gif (still <---> animate)
                     changeState($(this));
-                })
+                });
                 // Append the image to the card
                 card.append(cardImage);
 
@@ -177,6 +187,18 @@
                 gifRating.text("Rating: " + gifObjectArray[i].rating.toUpperCase());
                 // Append it to the card body
                 cardBody.append(gifRating);
+
+                // Create button for adding to favorites
+                let favorite = $("<button>").addClass("btn btn-light favorite");
+                // Set the text to a star from Font Aswesome
+                favorite.html('<i class="far fa-star"></i>');
+                // Set on click handler to the button
+                favorite.on("click", function() {
+                    // Add the gif to the favorites section
+                    addToFavorites($(this));
+                });
+                // Append the button to the card body
+                cardBody.append(favorite);
             }
         }
 
@@ -195,8 +217,74 @@
             thisImage.attr("src", thisImage.attr("data-" + thisImage.attr("data-state")));
         }
 
+        // Add gif from which the favorite button was clicked to the favorites
+        function addToFavorites(thisFavoriteButton) {
+            // Change the star to a filled star
+            thisFavoriteButton.html('<i class="fas fa-star"></i>');
+            // Change the color of the star
+            thisFavoriteButton.css("color", "#ffc107");
+
+            // TODO: Add the id of the gif to the favorites array
+
+
+
+
+            // Save the card column the favorite button belongs to in variable
+            let thisCard = thisFavoriteButton.parent().parent().parent();
+
+            // Clone the card favorited and save it as a variable
+            let cloneCard = thisCard.clone("true");
+            // Change the columns from 4 to 3
+            cloneCard.removeClass("col-md-4");
+            cloneCard.addClass("col-md-3");
+            // Add the cloned card to the favorites section
+            $("#favorites-section").append(cloneCard);
+
+            // Find the favorite button of the cloned card
+            let cloneFavoriteButton = cloneCard.find("button.favorite");
+            // Remove the on click handler
+            cloneFavoriteButton.off("click");
+            // Add a new on click handler to remove the card from the favorites section
+            cloneFavoriteButton.on("click", function() {
+                removeFromFavorites(cloneCard);
+            })
+        }
+
+        // Remove gif from the favorites section
+        function removeFromFavorites(card) {
+            // Remove the card the gif is in
+            card.remove();
+
+            // TODO: Remove the id of the gif from the favorites array and reload gifs in the search section
+        
+        
+        
+        }
+
         // Creates the existing buttons
         createExistingButtons();
+
+        // When favorites is clicked, change to favorites screen
+        $("#nav-favorites").on("click", function() {
+            // Make Favorites active
+            $("#nav-search").removeClass("active");
+            $("#nav-favorites").addClass("active");
+
+            // Display the favorites section
+            $("#search-section").addClass("hidden");
+            $("#favorites-section").removeClass("hidden");
+        })
+
+        // When search is clicked, change to search screen
+        $("#nav-search").on("click", function() {
+            // Make Search active
+            $("#nav-favorites").removeClass("active");
+            $("#nav-search").addClass("active");
+
+            // Display the search section
+            $("#favorites-section").addClass("hidden");
+            $("#search-section").removeClass("hidden");
+        })
 
         // When the Add Sport button is clicked
         $("#add-sport").on("click", function() {
