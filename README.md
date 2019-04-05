@@ -1,8 +1,9 @@
 # GifTastic
 
+
 Homework 06: GifTastic
 
----
+Use the sport text input box to type in a sport and click 'Add Sport' to create a button for it. If the sport you typed in is already a button, the button fill flash. Once you click a button, the screen displays 12 gifs realting to the sport. If you like a particular gif, click the star below it and it will be added to the 'Favorites' section located in the navbar. To remove a gif from the favorites section, click the yellow star below either in the 'Search' section of 'Favorites' section.
 
 ## Implementation
 
