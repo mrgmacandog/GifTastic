@@ -1,17 +1,18 @@
-// Code is executed in strict mode
-"use strict";
-
 // Wrap all code in an anonymous function so functions cannot be called externally
 (function() {
+    // Code is executed in strict mode
+    "use strict";
+
     $(document).ready(function() {
         // My API key for the GIPHY API
         const API_KEY = "28lAjGKNf0GPp5tY9oP31j3cTYi2EbzU";
         // The limit of how many gifs are accessed from the API
         const LIMIT = 12;
         // The maximum rating of a gif
-        const RATING = "pg-13"
+        const RATING = "pg-13";
 
         // Offset for GIPHY API
+        //     Initialize to 0 so that there is no offset for the first API call
         let offset = 0;
 
         // Array of sports
@@ -28,24 +29,24 @@
 
         function createButton(sportName) {
             // Create a button element
-            let sportButton = $("<button>")
+            let sportButton = $("<button>");
 
             // Add boostrap class to the button
-            sportButton.addClass("btn btn-info sport-button")
+            sportButton.addClass("btn btn-info sport-button");
 
             // Set the sport name as the id
             sportButton.attr("id", sportName);
-            
+
             // Set the type attribute to button
             sportButton.attr("type", "button");
-            
+
             // Set the text to be the sport name
             sportButton.text(sportName);
 
             // Query the API withe the sport name
             sportButton.on("click", function() {
                 queryAPI(sportName);
-            })
+            });
 
             // Append the button to the #button-area div
             $("#button-area").append(sportButton);
@@ -68,7 +69,7 @@
                 method: "GET"
             }).then(function(response) {
                 console.log(response.data);
-                
+
                 // Display the gifs on the page
                 displayGifs(response.data);
 
@@ -109,16 +110,6 @@
                 displayGifs(response.data);
             });
         }
-
-        /*
-        <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Card text</p>
-            </div>
-        </div>
-        */
 
         // Displays all the gifs from the API call
         function displayGifs(gifObjectArray) {
@@ -178,7 +169,7 @@
                 // Create button for adding to favorites
                 let favorite = $("<button>").addClass("btn btn-light favorite");
                 // Set the text to a star from Font Aswesome
-                favorite.html('<i class="far fa-star"></i>');
+                favorite.html("<i class=\"far fa-star\"></i>");
                 // Set on click handler to the button
                 favorite.on("click", function() {
                     // Add the gif to the favorites section
@@ -207,7 +198,7 @@
         // Add gif from which the favorite button was clicked to the favorites
         function addToFavorites(thisFavoriteButton) {
             // Change the star to a filled star
-            thisFavoriteButton.html('<i class="fas fa-star"></i>');
+            thisFavoriteButton.html("<i class=\"fas fa-star\"></i>");
             // Change the color of the star
             thisFavoriteButton.css("color", "#ffc107");
 
@@ -229,14 +220,14 @@
             // Add a new on click handler to remove the card from the favorites section
             cloneFavoriteButton.on("click", function() {
                 removeFromFavorites(cloneCard, thisFavoriteButton);
-            })
+            });
 
             // Remove the on click handler
             thisFavoriteButton.off("click");
             // Add a new on click handler to remove the card from the favorites section
             thisFavoriteButton.on("click", function() {
-                removeFromFavorites(cloneCard, thisFavoriteButton)
-            })
+                removeFromFavorites(cloneCard, thisFavoriteButton);
+            });
         }
 
         // Remove gif from the favorites section and change the button in the search section
@@ -245,7 +236,7 @@
             favoriteCard.remove();
 
             // Change the search card button back to the star outline
-            searchCardButton.html('<i class="far fa-star"></i>');
+            searchCardButton.html("<i class=\"far fa-star\"></i>");
             // Change the search card button color back to grey
             searchCardButton.css("color", "#212529");
 
@@ -270,7 +261,7 @@
             // Display the favorites section
             $("#search-section").addClass("hidden");
             $("#favorites-section").removeClass("hidden");
-        })
+        });
 
         // When search is clicked, change to search screen
         $("#nav-search").on("click", function() {
@@ -281,7 +272,7 @@
             // Display the search section
             $("#favorites-section").addClass("hidden");
             $("#search-section").removeClass("hidden");
-        })
+        });
 
         // When the Add Sport button is clicked
         $("#add-sport").on("click", function() {
@@ -309,6 +300,6 @@
                     $(`#${ sportName }`).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
                 }
             }
-        })
+        });
     });
 })();
